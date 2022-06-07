@@ -1,0 +1,28 @@
+
+int[][] solution(int[][] a) {
+
+Map<Float, ArrayList> table = new HashMap<Float, ArrayList>();
+for (int i = 0; i < a.length; i++){
+    int total = 0;
+    for (int l = 0; l < a[i].length; l++){
+        total += a[i][l];
+    }
+    
+    float average = ((float)total/((float)a[i].length));
+    if (table.containsKey(average)){
+        ArrayList j = table.get(average);
+        j.add(i);
+        table.put(average, j);
+    }
+    else {
+        ArrayList j = new ArrayList();
+        j.add(i);
+        table.put(average, j);
+    }
+    
+}
+
+for (int i = 0; i < table.values().size() ; i++){
+    
+} 
+}
