@@ -1,0 +1,16 @@
+int[] solution(int[] numbers) {
+
+int[] outputArray = new int[numbers.length-2];
+
+for (int i = 1; i+1 < numbers.length; i++){
+    if((numbers[i-1] < numbers[i] && numbers[i] > numbers[i+1]) ||
+       (numbers[i-1] > numbers[i] && numbers[i] < numbers[i+1])){
+        outputArray[i-1] = 1;
+    } else {
+        outputArray[i-1] = 0;
+    }
+    
+}
+return outputArray;
+
+}
