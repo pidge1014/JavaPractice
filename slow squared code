@@ -1,0 +1,20 @@
+int solution(int[] a, int[] b, int lower, int upper) {
+int returnSum = 0;
+
+for(int i =0; i < a.length; i++){
+    for(int j = 0; j < b.length; j++) {
+        int aSquared=a[i]*a[i];
+        if (aSquared > upper) {
+            break;
+        }
+        int bSquared=b[j]*b[j];
+        int combined=aSquared+bSquared;
+        if (combined >= lower && combined <= upper){
+            returnSum += 1;
+        }
+    }
+    
+}
+return returnSum;
+
+}
