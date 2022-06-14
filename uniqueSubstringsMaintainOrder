@@ -1,0 +1,14 @@
+int solution(String s) {
+      int n=s.length();
+      int returnCount=0;
+      for(int i=1;i<n-1;i++){
+          for(int j=i+1;j<n;j++){
+              String sub1=s.substring(0,i);
+              String sub2=s.substring(i,j);
+              String sub3=s.substring(j,n);
+              if(!(sub1+sub2).equals(sub2+sub3) && !(sub2+sub3).equals(sub3+sub1) && !(sub1+sub2).equals(sub3+sub1))
+                  returnCount++;
+          }
+      }
+      return returnCount;
+}
