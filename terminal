@@ -1,0 +1,39 @@
+String solution(String[] operations) {
+
+String currentOutput = "";
+String priorOutput = "";
+//technically just holding the offset
+int cursor = 0;
+int priorCursor = 0;
+int selectStart = -1;
+int selectEnd = -1;
+
+for(int i = 0; i < operations.length; i++){
+
+//unless its an undo, set the prior to the current, then perform the action on the current
+String[] subCommand = operations[i].split(" ");
+if (subCommand[0] == "TYPE"){
+    priorOutput = currentOutput;
+    
+    if (selectStart != -1){
+    //delete the selection and then treat it like a cursor position.
+    StringBuffer sb = new StringBuffer(currentOutput);
+    currentOutput = sb.delete(selectStart-1, selectEnd-1).toString();
+    cursor = selectStart-1;
+    }    
+    currentOutput = currentOutput.substring(0, cursor) + subCommand[1] + currentOutput.substring(cursor);
+    
+} else if(subCommand[0] == "SELECT"){
+    selectStart = Integer.getInteger(subCommand[1]);
+    selectEnd = Integer.getInteger(subCommand[2]);    
+} else if(subCommand[0] == "MOVE_CURSOR"){
+    priorCursor = cursor;
+    cursor = Integer.getInteger(subCommand[1]);
+}else if(subCommand[0] == "UNDO"){
+    currentOutput = priorOutput;
+    cursor = priorCursor;
+}
+
+}
+return currentOutput;
+}
